@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lobby</title>
+<script type="text/javascript" src="https://login.mightypanda88.com/jswrapper/integration.js.php?casino=mightypanda88"></script>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="./build/js/login.js"></script>
+<script type="text/javascript">
+	var search =location.search.substring(1);
+	var query =search.split('&');
+	var username= (query[0].split('='))[1].toUpperCase();
+  var ex_user= (query[0].split('='))[0];
+	iapiSetCallout('Login', calloutLogin);
+	iapiSetCallout('GetTemporaryAuthenticationToken', calloutGetTemporaryAuthenticationToken);
+	function askTempandLaunchGame(type,game){
+		currentgame = game;
+		gametype = type;
+		var realMode = 1;
+		console.log(currentgame,gametype);
+		iapiRequestTemporaryToken(realMode, '570', 'GamePlay');
+	}
+	function launchMobileClient(temptoken){
+		if (gametype == "mps") {
+		var clientUrl=''+'?username=' + username+ '&temptoken=' + temptoken + '&game=' + currentgame + '&real=1';
+		} else if (gametype = "ngm") {
+				var clientUrl = 'http://hub.mp176588.com/igaming/' + '?gameId=' + currentgame + '&real=1' + '&username=' + username + '&language='+'zh_cn'+ '&tempToken=' + temptoken + '&lobby=https://mobile.galaxyinnovation.com/mightypanda88/lobby.php' + '&support=https://mobile.galaxyinnovation.com/mightypanda88/support.php' + '&logout=https://mobile.galaxyinnovation.com/mightypanda88';
+		}
+		document.location = clientUrl;
+	}
+
+  if(ex_user=='first'){
+    login();
+  }
+
+	function login(){
+    var password= (query[1].split('='))[1];
+		var realMode = 1;
+		iapiSetClientPlatform("mobile&deliveryPlatform=HTML5");
+		iapiLogin(username,password,realMode,"en");
+	}
+
+	function calloutLogin(response) {
+		if (response.errorCode) {
+			alert("Login failed. " + response.playerMessage + " Error code: " + response.errorCode);
+		}
+		else {
+			alert("Login OK, ready to play games");
+			window.location = "lobby.html?username="+username;
+		}
+	}
+
+	function calloutGetTemporaryAuthenticationToken(response) {
+		if (response.errorCode) {
+			alert("Token failed. " + response.playerMessage + " Error code: " + response.errorCode);
+		}
+		else {
+			launchMobileClient(response.sessionToken.sessionToken);
+		}
+	}
+</script>
+</html>
