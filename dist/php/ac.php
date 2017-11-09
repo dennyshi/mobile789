@@ -23,6 +23,7 @@ switch ($action) {
         $mobile = $t['phone'];
         $password = $t['password'];
         $url = $t['url'];
+        $agent_id = $t['agent'];
 
 
         // $username = strtolower(filter_input(INPUT_POST, 'username'));
@@ -106,6 +107,10 @@ switch ($action) {
         if (!empty($intr)) {
             $params['agid'] = $intr;
         }
+        if(!empty($agent_id)){
+            $params['agid'] = $agent_id;
+        }
+
         if (!empty($sp)) {
             $params['sp'] = $sp;
         }
