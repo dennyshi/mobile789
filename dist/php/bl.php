@@ -19,6 +19,9 @@ $lives = [
     'mg' => 13,
     'pt' => 14,
     'sa' => 15,
+    'cf' => 16,
+    'ww' => 17,
+
     'main'=>0,
     'changemoney'=>0
 ];
@@ -50,7 +53,10 @@ switch ($action) {
     case 'mg':
     case 'gg':
     case 'sa':
-
+    case 'cf':
+    case 'ww':
+    // $f->debug();
+    // print_r($paramsp);
         $res = $f->NewPostData(PINGTAI_URL.'queryBalance',$paramsp);
         // echo "<br>";
         // echo 1111111;
@@ -71,7 +77,7 @@ switch ($action) {
             break;
         }
         $ct = $cout."_".$cin;
-        $change_type_arr = ['ms_ag','ms_bb','ms_pt','ms_mg','ms_gg','ms_sa','ag_ms','bb_ms','pt_ms','mg_ms','gg_ms','sa_ms'];
+        $change_type_arr = ['ms_ag','ms_bb','ms_pt','ms_mg','ms_gg','ms_sa','ms_cf','ms_ww','ag_ms','bb_ms','pt_ms','mg_ms','gg_ms','sa_ms','cf_ms','ww_ms'];
         if (!in_array($ct, $change_type_arr)) {
             $return = array('code' => $objCode->fail_change_money->code);
             break;
@@ -84,7 +90,7 @@ switch ($action) {
             $paramsp['billno'] = $billno;
             $paramsp['credit'] = $money;
             $paramsp['operator'] = $params['username'];
-            
+
             switch ($ct) {
                 case 'ms_ag':
                 case 'ms_bb':
@@ -92,6 +98,8 @@ switch ($action) {
                 case 'ms_mg':
                 case 'ms_gg':
                 case 'ms_sa':
+                case 'ms_cf':
+                case 'ms_ww':
                     $paramsp['live'] = $lives[$cin];
                     $paramsp['type'] = 'IN';
                     $paramsp['transMethod'] = $cin;
@@ -107,6 +115,8 @@ switch ($action) {
                 case 'mg_ms':
                 case 'gg_ms':
                 case 'sa_ms':
+                case 'cf_ms':
+                case 'ww_ms':
                     $paramsp['live'] = $lives[$cout];
                     $paramsp['type'] = 'OUT';
                     $paramsp['transMethod'] = $cout;
