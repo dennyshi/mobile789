@@ -23,7 +23,6 @@ switch ($action) {
         $mobile = $t['phone'];
         $password = $t['password'];
         $url = $t['url'];
-        $agent_id = $t['agent'];
 
 
         // $username = strtolower(filter_input(INPUT_POST, 'username'));
@@ -107,10 +106,6 @@ switch ($action) {
         if (!empty($intr)) {
             $params['agid'] = $intr;
         }
-        if(!empty($agent_id)){
-            $params['agid'] = $agent_id;
-        }
-
         if (!empty($sp)) {
             $params['sp'] = $sp;
         }
@@ -180,9 +175,13 @@ switch ($action) {
                     break;
                 }
             }
-            $params = array('username' => $username, 'company' => SITE_ID, 'userpass' => $pwd, 'ip' => $ip, 'user_type' => SITE_TYPE); //主副站修改
+            $params = array('username' => $username, 'company' => SITE_ID, 'userpass' => $pwd, 'ip' => $ip, 'user_type' => SITE_TYPE,'hul_is_mobile'=>1); //主副站修改
+            $os = CommonClass::get_user_os();
+            $params['hul_mobile_type'] = $os;
+            $params['hul_domain'] = $_SERVER['HTTP_HOST'];
+
 //            $params = array('username' => 'aabb5566', 'company' => SITE_ID, 'userpass' => 'bbaa5566', 'ip' => $ip, 'user_type' => SITE_TYPE); //主副站修改
-            // print_r(params);die;
+//             echo json_encode($params);die;
             $re = $clientA->login($params);
         }
         if ($re['code'] == $objCode->success_to_login->code) {
@@ -210,7 +209,7 @@ switch ($action) {
         break;
     case 'getnotice'://获取公告信息
         $params['company'] = SITE_ID;
-        $params['note_type'] = filter_input(INPUT_POST, 'note_type');
+        $params['note_type'] = $t['note_type'];
         $re = $clientA->getNotice($params);
         if ($re['code'] == $objCode->success_get_notice->code) {
             $re['data'] = array('notice' => $re['info']);

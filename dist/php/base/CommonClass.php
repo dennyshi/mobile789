@@ -3,7 +3,7 @@
 class CommonClass {
 
     public function __construct() {
-        
+
     }
 
     static function get_user_ip() {
@@ -153,7 +153,7 @@ class CommonClass {
      * @param type $str
      * @param type $pre
      * @param type $next
-     * @return type 
+     * @return type
      */
     static function get_key_param($str, $pre, $next) {
         $data = strtolower(md5(rand(11111, 99999) . time() . 'aadsadsdsafdsafdsafdafhjhjklhabbcc'));
@@ -176,7 +176,7 @@ class CommonClass {
     /**
      * 需要配置环境支持iconv，否则中文参数不能正常处理
      * @param type $data
-     * @param type $key 
+     * @param type $key
      * @return type
      */
     static function dcEncrypt($data, $key) {
@@ -363,7 +363,7 @@ class CommonClass {
     public function get__re_change_page_html($currentPage, $totalPages) {
         $linkPage = ( $currentPage > 1 ) ? "<a target='_self' href='javascript:;' onclick='get_re_change_list(1)' class='prev disabled'>首页</a>" : '<span class="prev disabled">首页</span>';
         $linkPage .= ( $currentPage < $totalPages ) ? "&nbsp&nbsp<a target='_self'  href='javascript:;' onclick='get_re_change_list( $totalPages)' class='next pagegbk'>尾页</a>&nbsp&nbsp" : "&nbsp&nbsp<span class='next disabled'>尾页</span>&nbsp&nbsp";
-        $linkPage .=  '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp'; 
+        $linkPage .= '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp';
         $linkPage .= '共<strong>' . $totalPages . '</strong>页，跳转到：<input class="ipage" type="input" value="' . $currentPage . '" />';
         $linkPage .= " <a href='javascript:;' onclick='get_re_change_list( $(\".ipage\").val())'>确定</a>";
         return $linkPage;
@@ -371,8 +371,8 @@ class CommonClass {
 
     public function get__re_deal_page_html($currentPage, $totalPages) {
         $linkPage = ( $currentPage > 1 ) ? "<a target='_self' href='javascript:;' onclick='get_re_deal_list(1)' class='prev disabled'>首页</a>" : '<span class="prev disabled">首页</span>';
-         $linkPage .= ( $currentPage < $totalPages ) ? "&nbsp&nbsp<a target='_self'  href='javascript:;' onclick='get_re_deal_list( $totalPages)' class='next pagegbk'>尾页</a>&nbsp&nbsp" : "&nbsp&nbsp<span class='next disabled'>尾页</span>&nbsp&nbsp";
-        $linkPage .=  '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp';     
+        $linkPage .= ( $currentPage < $totalPages ) ? "&nbsp&nbsp<a target='_self'  href='javascript:;' onclick='get_re_deal_list( $totalPages)' class='next pagegbk'>尾页</a>&nbsp&nbsp" : "&nbsp&nbsp<span class='next disabled'>尾页</span>&nbsp&nbsp";
+        $linkPage .= '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp';
         $linkPage .= '共<strong>' . $totalPages . '</strong>页，跳转到：<input class="ipage" type="input" value="' . $currentPage . '" />';
         $linkPage .= " <a href='javascript:;' onclick='get_re_deal_list( $(\".ipage\").val())'>确定</a>";
         return $linkPage;
@@ -381,13 +381,13 @@ class CommonClass {
     public function get__re_bet_page_html($currentPage, $totalPages) {
         $linkPage = ( $currentPage > 1 ) ? "<a target='_self' href='javascript:;' onclick='get_re_bet_list(1)' class='prev disabled'>首页</a>" : '<span class="prev disabled">首页</span>';
         $linkPage .= ( $currentPage < $totalPages ) ? "&nbsp&nbsp<a target='_self'  href='javascript:;' onclick='get_re_bet_list( $totalPages)' class='next pagegbk'>尾页</a>&nbsp&nbsp" : "&nbsp&nbsp<span class='next disabled'>尾页</span>&nbsp&nbsp";
-        $linkPage .=  '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp';      
+        $linkPage .= '<span class="current">当前页:' . $currentPage . '</span>&nbsp&nbsp&nbsp&nbsp';
         $linkPage .= '共<strong>' . $totalPages . '</strong>页，跳转到：<input class="ipage" type="input" value="' . $currentPage . '" />';
         $linkPage .= " <a href='javascript:;' onclick='get_re_bet_list( $(\".ipage\").val())'>确定</a>";
         return $linkPage;
     }
 
-    public function getpageurl($count, $page, $lm = 10 ,$ty) {
+    public function getpageurl($count, $page, $lm = 10, $ty) {
         $totalpages = ceil($count / $lm);
         if ($totalpages <= 1) {
             return false;
@@ -397,31 +397,98 @@ class CommonClass {
         } else if ($page > $totalpages) {
             $page = $totalpages;
         }
-        if( $ty == "re_change" ){
+        if ($ty == "re_change") {
             $pages = $this->get__re_change_page_html($page, $totalpages);
-        }else if( $ty == "re_bet" ){
+        } else if ($ty == "re_bet") {
             $pages = $this->get__re_bet_page_html($page, $totalpages);
-        }else if( $ty == "re_deal" ){
+        } else if ($ty == "re_deal") {
             $pages = $this->get__re_deal_page_html($page, $totalpages);
         }
 
         return $pages;
     }
 
-    
-    static function is_test_user($username,$usertype=-1){
-        if($usertype == 10 || $usertype == 20){
+    static function is_test_user($username, $usertype = -1) {
+        if ($usertype == 10 || $usertype == 20) {
             return 1;
         }
-        if($usertype == 11 || $usertype == 21){
+        if ($usertype == 11 || $usertype == 21) {
             return 0;
         }
-        $arr = ['shiwan01','shiwan02','shiwan03','shiwan04','shiwan05','shiwan06','shiwan07','shiwan08','shiwan09','shiwan10','denny123','denny234'];
-        if(in_array($username, $arr)){
+        $arr = ['shiwan01', 'shiwan02', 'shiwan03', 'shiwan04', 'shiwan05', 'shiwan06', 'shiwan07', 'shiwan08', 'shiwan09', 'shiwan10', 'denny123', 'denny234'];
+        if (in_array($username, $arr)) {
             return 0;
-        }else{
+        } else {
             return 1;
         }
+    }
+
+    static function get_user_os() {
+        $agent = $_SERVER["HTTP_USER_AGENT"];
+        static $os;
+        if (isset($os)) {
+            return $os;
+        }
+        if (preg_match("/win/i", $agent) && strpos($agent, "95")) {
+            $os = "Windows 95";
+        } else if (preg_match("/win 9x/i", $agent) && strpos($agent, "4.90")) {
+            $os = "Windows ME";
+        } else if (preg_match("/win/i", $agent) && preg_match('/98/', $agent)) {
+            $os = "Windows 98";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 5.0/i', $agent)) {
+            $os = "Windows 2000";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 5.1/i', $agent)) {
+            $os = "Windows XP";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 6.0/i', $agent)) {
+            $os = "Windows Vista";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 6.1/i', $agent)) {
+            $os = "Windows 7";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 6.2/i', $agent)) {
+            $os = "Windows 8";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 6.3/i', $agent)) {
+            $os = "Windows 8.1";
+        } else if (preg_match("/win/i", $agent) && preg_match('/nt 10/i', $agent)) {
+            $os = "Windows 10";
+        } else if (preg_match("/win/i", $agent) && preg_match('/32/', $agent)) {
+            $os = "Windows 32";
+        } else if (preg_match("/linux/i", $agent)) {
+            $os = "Linux";
+        } else if (preg_match("/unix/i", $agent)) {
+            $os = "Unix";
+        } else if (preg_match("/sun/i", $agent) && preg_match("/os/i", $agent)) {
+            $os = "SunOS";
+        } else if (preg_match("/ibm/i", $agent) && preg_match("/os/i", $agent)) {
+            $os = "IBM OS/2";
+        } else if (preg_match("/mac/i", $agent) && preg_match("/pc/i", $agent)) {
+            $os = "Macintosh";
+        } else if (preg_match("/powerpc/i", $agent)) {
+            $os = "PowerPC";
+        } else if (preg_match("/aix/i", $agent)) {
+            $os = "AIX";
+        } else if (preg_match("/HPUX/i", $agent)) {
+            $os = "HPUX";
+        } else if (preg_match("/netbsd/i", $agent)) {
+            $os = "NetBSD";
+        } else if (preg_match("/bsd/i", $agent)) {
+            $os = "BSD";
+        } else if (preg_match("/OSF1/i", $agent)) {
+            $os = "OSF1";
+        } else if (preg_match("/IRIX/i", $agent)) {
+            $os = "IRIX";
+        } else if (preg_match("/FreeBSD/i", $agent)) {
+            $os = "FreeBSD";
+        } else if (preg_match("/teleport/i", $agent)) {
+            $os = "teleport";
+        } else if (preg_match("/flashget/i", $agent)) {
+            $os = "flashget";
+        } else if (preg_match("/webzip/i", $agent)) {
+            $os = "webzip";
+        } else if (preg_match("/offline/i", $agent)) {
+            $os = "offline";
+        } else {
+            $os = "Unknown or APP";
+        }
+        return $os;
     }
 
 }
