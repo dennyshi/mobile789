@@ -35,6 +35,8 @@ $lives = [
     'mg' => 13,
     'pt' => 14,
     'sa' => 15,
+    'nn' => 18,
+    'jd' => 18,
     'main' => 0,
 
     'changemoney' => 0
@@ -114,6 +116,12 @@ if ( ( !empty( $r ) ) && $ac == 'gg') {
     $data['code'] = "10000";
     $data['url'] = $r;
     $data['msg'] = "GG平台登录地址获取成功";
+    return $data;
+}
+if ( ( !empty( $r ) ) && ($ac == 'jd' || $ac == 'nn')) {
+    $data['code'] = "10000";
+    $data['url'] = NN_LOTTO_DOMAIN.$r;
+    $data['msg'] = "牛牛彩官网平台登录成功";
     return $data;
 }
 
