@@ -179,10 +179,14 @@ switch ($action) {
         }
         break;
     case 'jdc':
+        // print_r(1111);
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
+        // print_r($paramsp);
+        // print_r($r);
         if(strstr($r, 'http')){
             header("Location: $r");
         }
+
         break;
     case 'cf_sport':
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
