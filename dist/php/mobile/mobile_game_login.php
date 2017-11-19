@@ -181,7 +181,7 @@ switch ($action) {
     case 'jdc':
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
         if(strstr($r, 'http')){
-            print_r($r);
+            header("Location: $r");
         }
         break;
     case 'cf_sport':
