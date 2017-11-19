@@ -51,6 +51,7 @@ $lives = [
     'sa' => 15,
     'cf' => 16,
     'ww' => 17,
+    'jd' => 18,
     'main' => 0,
 
     'changemoney' => 0
@@ -172,6 +173,12 @@ switch ($action) {
         }
         break;
     case 'sa_lotto':
+        $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
+        if(strstr($r, 'http')){
+            print_r($r);
+        }
+        break;
+    case 'jdc':
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
         if(strstr($r, 'http')){
             print_r($r);
