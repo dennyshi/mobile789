@@ -13,7 +13,7 @@ $t =  file_get_contents('php://input');
 $_POST = json_decode($t,true);
 
 $host = $_SERVER['HTTP_HOST'];
-define("SITE_ID", 2017);
+define("SITE_ID", 2018);
 define("SITE_TYPE", 1);
 define("IMG_SITE_ID", 49);
 define("DS_SS_HANDICP", 'B');
