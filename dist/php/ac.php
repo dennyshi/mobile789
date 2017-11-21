@@ -145,8 +145,8 @@ switch ($action) {
                 $result = $f->NewPostData(MY_HTTP_MONEY_HOST_TEST . 'setMemberData', $pa);
                 $result = $f->NewPostData(MY_HTTP_CENTER_HOST . 'setMemberData', json_encode($pa), 2);
             } else {
-                $f->NewPostData(MY_HTTP_MONEY_HOST . 'setMemberData', $pa); //正式会员给钱包中心提交会员信息
-                $f->NewPostData(MY_HTTP_CENTER_HOST . 'setMemberData', json_encode($pa), 2); //正式会员给报表中心提交会员信息
+                $result = $f->NewPostData(MY_HTTP_MONEY_HOST . 'setMemberData', $pa); //正式会员给钱包中心提交会员信息
+                $result = $f->NewPostData(MY_HTTP_CENTER_HOST . 'setMemberData', json_encode($pa), 2); //正式会员给报表中心提交会员信息
             }
             $re['param'] = $pa;
             $re['result'] = $result;
