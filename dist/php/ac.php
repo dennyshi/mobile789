@@ -132,15 +132,24 @@ switch ($action) {
             $pa['corprator'] = $re['data']['corprator'];
             $pa['superior'] = $re['data']['supers'];
             $pa['company'] = 'admin';
+
+            $qianzhui = rand(100,999);
+            $houzhui  = rand(1000,9999);
+            $key = md5($pa['username'].$pa['siteId']);
+            $pa['key'] = $qianzhui.$key.$houzhui;
+
             $demo_user = array('1' => '11', '2' => '21');
             $site_type = SITE_TYPE; //主副站修改
             $f = new Fetch();
             if ($re['data']['user_type'] == $demo_user[$site_type]) {//测试会员给钱包中心提交会员信息
-                $f->NewPostData(MY_HTTP_MONEY_HOST_TEST . 'setMemberData', $pa);
+                $result = $f->NewPostData(MY_HTTP_MONEY_HOST_TEST . 'setMemberData', $pa);
+                $result = $f->NewPostData(MY_HTTP_CENTER_HOST . 'setMemberData', json_encode($pa), 2);
             } else {
                 $f->NewPostData(MY_HTTP_MONEY_HOST . 'setMemberData', $pa); //正式会员给钱包中心提交会员信息
                 $f->NewPostData(MY_HTTP_CENTER_HOST . 'setMemberData', json_encode($pa), 2); //正式会员给报表中心提交会员信息
             }
+            $re['param'] = $pa;
+            $re['result'] = $result;
         } else {
             $re['data'] = json_decode($re['info'], TRUE);
         }
