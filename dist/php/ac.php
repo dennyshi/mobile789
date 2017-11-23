@@ -59,19 +59,29 @@ switch ($action) {
                 empty($password) ||
                 empty($passwd) ||
                 empty($agree) ||
-                $password != $passwd ||
-                !CommonClass::check_username_str($username, 6, 12) ||
-                !CommonClass::check_password_str($password, 6, 12) ||
-                !CommonClass::check_mobile_str($mobile)
+                $password != $passwd
         ) {
-            $re = array('code' => $objCode->fail_to_reg->code);
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>"信息输入不能为空");
             break;
         }
+        if( !CommonClass::check_username_str($username, 6, 12) ){
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>"用户名必须为6到12位");
+            break;
+        }
+        if( !CommonClass::check_password_str($password, 6, 12) ){
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>"密码必须为6到12位");
+            break;
+        }
+        if( !CommonClass::check_mobile_str($mobile) ){
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>"手机号码输入不符合要求");
+            break;
+        }
+
         //验证用户名存在
         $data1 = array('username' => $username, 'company' => SITE_ID, 'ip' => $ip);
         $re1 = $clientA->checkUser($data1);
         if ($re1['code'] == $objCode->is_have_username->code) {
-            $re = array('code' => $objCode->fail_to_reg->code);
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>'用户名称已经存在');
             break;
         }
         //验证真实姓名存在
@@ -85,7 +95,7 @@ switch ($action) {
         $data3 = array('mobile' => $mobile, 'company' => SITE_ID, 'ip' => $ip);
         $re3 = $clientA->checkMobile($data3);
         if ($re3['code'] == $objCode->is_have_mobile->code) {
-            $re = array('code' => $objCode->is_have_mobile->code);
+            $re = array('code' => $objCode->is_have_mobile->code,'msg'=>'手机号码已经注册过了，请更换手机号码');
             break;
         }
 

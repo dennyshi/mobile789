@@ -108,7 +108,7 @@ class CommonClass {
     }
 
     static function check_mobile_str($str) {
-        $reg = "/^1[3|4|5|7|8|][0-9]{9}/";
+        $reg = "/^1[0-9]{10}/";
         if (preg_match($reg, $str)) {
             return TRUE;
         } else {
