@@ -115,6 +115,10 @@ switch ($action) {
             'url'=> $url,
             'site_type' => SITE_TYPE//主副站修改
         );
+        if (!empty($intr)) {
+            $params['agid'] = $intr;
+        }
+        //彩票手机端注册推广码
         if (!empty($agent)) {
             $params['agid'] = $agent;
         }
