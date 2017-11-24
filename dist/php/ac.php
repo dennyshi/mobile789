@@ -22,6 +22,7 @@ switch ($action) {
         $username = $t['username'];
         $mobile = $t['phone'];
         $password = $t['password'];
+        $agent = $t['agent'];
         $url = $t['url'];
 
 
@@ -47,6 +48,7 @@ switch ($action) {
             $sp = explode( "=" , $sp );
             $sp = $sp[1];
         }
+
         $params['url'] = $url;
         $truename = $username;
         $passwd = $password;
@@ -116,6 +118,10 @@ switch ($action) {
         if (!empty($intr)) {
             $params['agid'] = $intr;
         }
+        //彩票手机端注册推广码
+        if (!empty($agent)) {
+            $params['agid'] = $agent;
+        }
         if (!empty($sp)) {
             $params['sp'] = $sp;
         }
@@ -126,6 +132,7 @@ switch ($action) {
             $params['qq'] = $qq;
         }
         $params['host'] = $host;
+//        print_r($params);die;
         $re = $clientA->userRegister($params);
         if ($re['code'] == $objCode->success_to_reg_and_login->code) {
             $re['data'] = json_decode($re['info'], TRUE);
