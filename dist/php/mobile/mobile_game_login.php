@@ -51,7 +51,7 @@ $lives = [
     'sa' => 15,
     'cf' => 16,
     'ww' => 17,
-    'jd' => 18,
+    'nn' => 18,
     'main' => 0,
 
     'changemoney' => 0
@@ -178,7 +178,7 @@ switch ($action) {
             print_r($r);
         }
         break;
-    case 'jdc':
+    case 'nn':
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
         if(!empty($r)){
             $url = NN_LOTTO_DOMAIN.$r;
