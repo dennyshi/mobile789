@@ -95,7 +95,7 @@ switch ($action) {
         $data3 = array('mobile' => $mobile, 'company' => SITE_ID, 'ip' => $ip);
         $re3 = $clientA->checkMobile($data3);
         if ($re3['code'] == $objCode->is_have_mobile->code) {
-            $re = array('code' => $objCode->is_have_mobile->code,'msg'=>'注册失败,手机号码已注册');
+            $re = array('code' => $objCode->fail_to_reg->code,'msg'=>'注册失败,手机号码已注册');
             break;
         }
 
@@ -161,6 +161,8 @@ switch ($action) {
             $re['param'] = $pa;
             $re['result'] = $result;
         } else {
+            $re['code'] = $objCode->fail_to_reg->code;
+            $re['msg'] = "注册失败";
             $re['data'] = json_decode($re['info'], TRUE);
         }
         break;
