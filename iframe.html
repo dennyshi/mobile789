@@ -1,0 +1,48 @@
+<!DOCTYPE html style="height:100%">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iframe</title>
+</head>
+<body style="height:100%">
+ <a target="_blank" href="/" class="backIndex" ></a>
+ <iframe src="loading.html" id="iframe" style="width:100%;height:100%"  frameborder="0">
+ </iframe>
+</body>
+</html>
+<style>
+body{
+  margin:0;
+  padding:0;
+  background-color:#f2f2f2;
+}
+a{
+  color:#000;
+  text-decoration:none;
+}
+.backIndex{
+  background:url(images/back.png);
+  background-size:100% 100%;
+  width:15%;
+  height:2.5%;
+  display:block;
+  position:absolute;
+  right:2.5%;
+  top:1.5%;
+  letter-spacing:2px;
+  z-index:99999;
+}
+@media (orientation:landscape){
+  .backIndex{
+    top:2.5%;
+    width:10%;
+    height:5%;
+  }
+}
+</style>
+<script>
+var search=location.search.substring(1);
+var query =search.split('src=');
+var src=query[1];
+document.getElementById('iframe').setAttribute('src',src)
+;</script>
