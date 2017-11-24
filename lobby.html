@@ -19,14 +19,16 @@
 		currentgame = game;
 		gametype = type;
 		var realMode = 1;
-		console.log(currentgame,gametype);
 		iapiRequestTemporaryToken(realMode, '570', 'GamePlay');
 	}
 	function launchMobileClient(temptoken){
+    var host="http://"+location.hostname;
 		if (gametype == "mps") {
 		var clientUrl=''+'?username=' + username+ '&temptoken=' + temptoken + '&game=' + currentgame + '&real=1';
 		} else if (gametype = "ngm") {
-				var clientUrl = 'http://hub.mp176588.com/igaming/' + '?gameId=' + currentgame + '&real=1' + '&username=' + username + '&language='+'zh_cn'+ '&tempToken=' + temptoken + '&lobby=https://mobile.galaxyinnovation.com/mightypanda88/lobby.php' + '&support=https://mobile.galaxyinnovation.com/mightypanda88/support.php' + '&logout=https://mobile.galaxyinnovation.com/mightypanda88';
+      var clientUrl = 'http://hub.mp176588.com/igaming/' + '?gameId=' + currentgame + '&real=1' + '&username=' + username + '&language='+'zh_cn'+ '&tempToken=' + temptoken +
+     '&lobby='+host+'/lobby.html'+
+     '&logout='+host;
 		}
 		document.location = clientUrl;
 	}
