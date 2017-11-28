@@ -10,9 +10,10 @@ $params['username'] = $_COOKIE['username'];
 $params['company'] = SITE_ID;
 $params['oid'] = $_COOKIE['oid'];
 $params['isMobile'] = "1";
-$params['code'] = (string)$tmp['code'];;
+$params['code'] = (string)$tmp['code'];
 $action = $tmp['action'];
 $isMobile = $params['isMobile'];
+$params['domain'] = $_SERVER['HTTP_HOST'];
 //print_r($action);
 // print_r($params);die;
 //echo 222;
@@ -59,7 +60,7 @@ $lives = [
 $f = new Fetch();
 $keyp = CommonClass::get_key_param($params['username'] . GAME_PASSWORD . GAME_KEYB . date("Ymd"), 6, 9);
 $ac = substr($action, 0, 2);
-$paramsp = array('siteId' => SITE_ID, 'username' => $params['username'], 'live' => $lives[$ac], 'password' => GAME_PASSWORD, 'isDemo' => CommonClass::is_test_user($params['username']), 'key' => $keyp,'isMobile'=>'1');
+$paramsp = array('siteId' => SITE_ID, 'username' => $params['username'], 'live' => $lives[$ac], 'password' => GAME_PASSWORD, 'isDemo' => CommonClass::is_test_user($params['username']), 'key' => $keyp,'isMobile'=>'1','loginUrl'=>$params['domain']);
 //echo 88888;die;
 switch ($action) {
     case 'ag_live':
