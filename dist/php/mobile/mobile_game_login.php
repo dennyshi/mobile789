@@ -96,10 +96,14 @@ switch ($action) {
     case 'bb_game':
         $paramsp['page_site'] = 'game';
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
-        print_r($r);
-//        if(strstr($r, 'http')){
-//            header("Location: $r");
-//        }
+
+        if(strstr($r, 'http')){
+            print_r($r);
+        }else{
+            $res['java'] = $r;
+            $res['param'] = $paramsp;
+            print_r($res);
+        }
         break;
     case 'bb_sport':
         $paramsp['page_site'] = 'ball';
