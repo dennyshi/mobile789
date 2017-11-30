@@ -100,6 +100,7 @@ switch ($action) {
         if(strstr($r, 'http')){
             print_r($r);
         }else{
+
             $res['java'] = $r;
             $res['param'] = $paramsp;
             print_r($res);
