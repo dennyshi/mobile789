@@ -719,12 +719,11 @@ var PicBox = function (_React$Component) {
         loadingState: true
       });
       this.state.pageNum++;
-      if (true) {
-        //开发模式
-        var url = "http://k3.net/dist/php/mobile/mobile_game_info.php";
-      } else {
-        var url = "../../dist/php/mobile/mobile_game_info.php";
-      }
+      // if(process.env==='dev'){      //开发模式
+      //   var url ="http://k3.net/dist/php/mobile/mobile_game_info.php";
+      // }else{
+      var url = "../../dist/php/mobile/mobile_game_info.php";
+      // }
 
       if (location.pathname.indexOf('lobby') == 1) {
         var platform_num = 14;
