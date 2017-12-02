@@ -38,7 +38,7 @@ if( stripos( $params['username'], 'shiwan' ) == false  ){
 
 $get_protect_status = $clientA->getProtectStatus(SITE_ID, $action);
 if( $get_protect_status['info']['status'] == 2 ){
-    echo "<script>alert('游戏正在维护，敬请期待！'); self.close();</script>";
+    echo "<script>alert('游戏正在维护，敬请期待！'); location.href='http://m.a708090.com';</script>";
 //    $code = 113057 ;        //游戏正在维护
     return false;
 }
