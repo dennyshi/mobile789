@@ -13,6 +13,7 @@ $params['isMobile'] = "1";
 $params['code'] = (string)$tmp['code'];
 $action = $tmp['action'];
 $isMobile = $params['isMobile'];
+
 $params['domain'] = $_SERVER['HTTP_HOST'];
 //print_r($action);
 // print_r($params);die;
