@@ -15,6 +15,13 @@ $action = $tmp['action'];
 $isMobile = $params['isMobile'];
 
 $params['domain'] = $_SERVER['HTTP_HOST'];
+if ($_SERVER["HTTPS"] == "on"){
+    $qianzhui = "https://";
+}else{
+    $qianzhui = "http://";
+}
+$houzhui = "/";
+$url = $qianzhui.$params['domain'].$houzhui;
 //print_r($action);
 // print_r($params);die;
 //echo 222;
@@ -61,7 +68,7 @@ $lives = [
 $f = new Fetch();
 $keyp = CommonClass::get_key_param($params['username'] . GAME_PASSWORD . GAME_KEYB . date("Ymd"), 6, 9);
 $ac = substr($action, 0, 2);
-$paramsp = array('siteId' => SITE_ID, 'username' => $params['username'], 'live' => $lives[$ac], 'password' => GAME_PASSWORD, 'isDemo' => CommonClass::is_test_user($params['username']), 'key' => $keyp,'isMobile'=>'1','loginUrl'=>$params['domain']);
+$paramsp = array('siteId' => SITE_ID, 'username' => $params['username'], 'live' => $lives[$ac], 'password' => GAME_PASSWORD, 'isDemo' => CommonClass::is_test_user($params['username']), 'key' => $keyp,'isMobile'=>'1','loginUrl'=>$url);
 //echo 88888;die;
 switch ($action) {
     case 'ag_live':
