@@ -181,6 +181,7 @@ switch ($action) {
         print_r($r);
         break;
     case 'sa_game':
+        $paramsp['gameType'] = "ele";
         $r = $f->NewPostData(PINGTAI_URL . 'login', $paramsp);
         if(strstr($r, 'http')){
             print_r($r);
