@@ -103,8 +103,9 @@ switch ($action) {
         //验证代理是否存在
         $data5 = array('agent_id' => $agent, 'site_id' => SITE_ID);
         $re5 = $clientA->check_agent_id($data5);
+//        print_r($re5);die;
         $re5 = json_decode($re5,true);
-        if ($re5['code'] == "100000") {
+        if ($re5['code'] == "100001") {
             $re = array('code' => $objCode->fail_to_reg->code,'msg'=>'注册失败,推广码不存在');
             break;
         }
@@ -140,6 +141,7 @@ switch ($action) {
             $params['qq'] = $qq;
         }
         $params['host'] = $host;
+//        echo json_encode($params);die;
 //        print_r($params);die;
         $re = $clientA->userRegister($params);
         if ($re['code'] == $objCode->success_to_reg_and_login->code) {
